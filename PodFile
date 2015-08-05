@@ -1,0 +1,7 @@
+platform :ios, '8.0'
+use_frameworks!
+
+pod 'AFNetworking'
+pod 'BDBOAuth1Manager'
+pod 'RESideMenu', '~> 4.0.7' 
+pod 'RESideMenu'
