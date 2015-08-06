@@ -155,6 +155,9 @@ class FoodViewController: UIViewController, CLLocationManagerDelegate, MKMapView
                 //show in map
                 let restaurantPosition = customAnnotation()
                 restaurantPosition.setCoordinate( CLLocationCoordinate2DMake(business.businessCoordinateLatitude, business.businessCoordinateLongitude))
+                restaurantPosition.setID(business.businessId)
+                restaurantPosition.setbusinessUrl(business.businessUrl)
+                restaurantPosition.setbusinessUrlRating(business.businessImageUrl)
                 restaurantPosition.title = business.businessName
                 restaurantPosition.subtitle = business.businessAddress
                     
@@ -166,37 +169,6 @@ class FoodViewController: UIViewController, CLLocationManagerDelegate, MKMapView
                 self.restaurantName = business.businessName
                 self.restaurantLong = business.businessCoordinateLongitude
                 self.restaurantLat = business.businessCoordinateLongitude
-                
-                // set the direction
-//                let myPlacemark = MKPlacemark(placemark: self.pm!)!
-//                self.myDestination = MKPlacemark(coordinate: CLLocationCoordinate2DMake(business.businessCoordinateLatitude, business.businessCoordinateLongitude), addressDictionary: nil)
-//                let destMKMap = MKMapItem(placemark: self.myDestination)!
-//                
-//                var directionRequest:MKDirectionsRequest = MKDirectionsRequest()
-//                
-//                directionRequest.setSource(MKMapItem.mapItemForCurrentLocation())
-//                
-//                directionRequest.setDestination(destMKMap)
-//                
-//                self.dir = MKDirections(request: directionRequest)
-//                
-//                self.dir.calculateDirectionsWithCompletionHandler() {
-//                    (response:MKDirectionsResponse!, error:NSError!) in
-//                    if response == nil {
-//                        println(error)
-//                        return
-//                    }
-//                    
-//                    println("got directions")
-//                    let route = response.routes[0] as! MKRoute
-//                    
-//                    self.poly = route.polyline
-//                    
-//                    self.mapView.addOverlay(self.poly)
-//                    for step in route.steps {
-//                        println("After \(step.distance) metres: \(step.instructions)")
-//                    }
-//                }
                 
                 
                 i++
@@ -280,12 +252,11 @@ class FoodViewController: UIViewController, CLLocationManagerDelegate, MKMapView
             var i:Int = 0
             
             for business in Restaurant {
-                //println(business.businessName!)
-                //println(business.businessAddress!)
-                //println()
-                //show in map
                 let restaurantPosition = customAnnotation()
                 restaurantPosition.setCoordinate( CLLocationCoordinate2DMake(business.businessCoordinateLatitude, business.businessCoordinateLongitude))
+                restaurantPosition.setID(business.businessId)
+                restaurantPosition.setbusinessUrl(business.businessUrl)
+                restaurantPosition.setbusinessUrlRating(business.businessImageUrl)
                 restaurantPosition.title = business.businessName
                 restaurantPosition.subtitle = business.businessAddress
                 
@@ -329,10 +300,63 @@ class FoodViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     }
     
     func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
+        searchActive = false
         if let annotation = view.annotation as? customAnnotation {
+            var newProgramVar = myResto()
             println("IT clicked!!")
+            
+            if let ann = self.mapView.selectedAnnotations[0] as? customAnnotation {
+                println("\(ann.getID())")
+                println("\(ann.getbusinessUrl())")
+                println("\(ann.getbusinessUrlRating())")
+                println("\(ann.coordinate)")
+            }
+            
+            let vc = DetailFoodViewController(nibName: "DetailFoodViewController", bundle: nil)
+        self.performSegueWithIdentifier("detailFoodViewController", sender: self)
+            
+//            let mapViewControllerObejct = self.storyboard?.instantiateViewControllerWithIdentifier("DetailFoodViewController") as? DetailFoodViewController
+//            self.navigationController?.pushViewController(mapViewControllerObejct!, animated: true)
         }
     }
-    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        
+        // Create a variable that you want to send
+
+        
+        // Create a new variable to store the instance of PlayerTableViewController
+        searchBar.endEditing(true)
+        let destinationVC = segue.destinationViewController as! DetailFoodViewController
+        if let ann = self.mapView.selectedAnnotations[0] as? customAnnotation {
+            println("\(ann.getID())")
+            println("\(ann.getbusinessUrl())")
+            println("\(ann.getbusinessUrlRating())")
+            println("\(ann.coordinate)")
+            destinationVC.imgURL = ann.getbusinessUrl()
+            destinationVC.imgURLRating = ann.getbusinessUrlRating()
+            /*
+            var restaurantName: String!
+            var restaurantAddress: String!
+            var restaurantLocation: CLLocation!
+            */
+            
+            destinationVC.restaurantName = ann.title
+            destinationVC.restaurantAddress = ann.subtitle
+            destinationVC.restaurantLocation = ann.coordinate
+        }
+            }
 }
+class myResto: NSObject{
+    var businessId : String!
+    var businessName : String!
+    var businessImage : String!
+    var businessCoordinateLongitude : Double!
+    var businessCoordinateLatitude : Double!
+    var businessUrl : NSURL!
+    var businessImageUrl : NSURL!
+    var businessPhone : String!
+    var businessAddress : String!
+}
+    
+
 

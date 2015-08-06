@@ -13,7 +13,7 @@ import MapKit // For Showing Maps
 import CoreLocation // For Get the user location
 import MapKit // For Showing Maps
 import Darwin // For random number
-import RESideMenu
+
 
 
 class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {

@@ -26,7 +26,7 @@ class Restaurant: NSObject {
         businessId = dictionary["id"] as? String
         businessName = dictionary["name"] as? String
         
-        let ratingBusinessURL = dictionary["rating_img_url_small"] as? String
+        let ratingBusinessURL = dictionary["rating_img_url"] as? String
         if(ratingBusinessURL != nil){
             businessUrl = NSURL(string: ratingBusinessURL!)
         } else {

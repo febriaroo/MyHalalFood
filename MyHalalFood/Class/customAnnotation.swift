@@ -18,9 +18,52 @@ class customAnnotation: NSObject, MKAnnotation {
             return coord
         }
     }
+    func setID(_id: String!)
+    {
+        self.id=_id
+    }
+    func getID() -> String
+    {
+        return id
+    }
+    func setbusinessUrl(_id: NSURL!)
+    {
+        self.businessUrl=_id
+    }
+    func getbusinessUrl() -> NSURL
+    {
+        if(businessUrl == nil)
+        {
+            return NSURL(string: "http://www.jordans.com/~/media/Jordans%20Redesign/No-image-found.jpg")!
+        }
+        return businessUrl
+
+    }
+    func setbusinessUrlRating(_id: NSURL!)
+    {
+        self.businessImageUrl=_id
+    }
+    func getbusinessUrlRating() -> NSURL
+    {
+        if(businessImageUrl == nil)
+        {
+            return NSURL(string: "http://www.jordans.com/~/media/Jordans%20Redesign/No-image-found.jpg")!
+        }
+        return businessImageUrl
+    }
     
     var title: String = ""
     var subtitle: String = ""
+    var id:String = ""
+    var businessId : String!
+    var businessName : String!
+    var businessImage : String!
+    var businessCoordinateLongitude : Double!
+    var businessCoordinateLatitude : Double!
+    var businessUrl : NSURL!
+    var businessImageUrl : NSURL!
+    var businessPhone : String!
+    var businessAddress : String!
     
     func setCoordinate(newCoordinate: CLLocationCoordinate2D) {
         self.coord = newCoordinate
