@@ -81,6 +81,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             var alert = UIAlertView(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", delegate: nil, cancelButtonTitle: "OK")
             alert.show()
         }
+        let viewController = TimeViewController()
+        viewController.dataFromAPI = mapView.userLocation
+        self.navigationController?.presentViewController(viewController, animated: true, completion: nil)
         
 
     }
@@ -145,45 +148,52 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                 //println(business.businessAddress!)
                 //println()
                     //show in map
-                    let restaurantPosition = customAnnotation(coordinate: CLLocationCoordinate2DMake(business.businessCoordinateLatitude, business.businessCoordinateLongitude), title: business.businessName, subtitle: business.businessAddress)
-                    self.mapView.viewForAnnotation(restaurantPosition)
-                    self.mapView.addAnnotation(restaurantPosition)
-                    var coordinateBusiness = CLLocation(latitude: business.businessCoordinateLatitude, longitude: business.businessCoordinateLongitude)
-                    self.centerMapOnLocation(self.mapView.userLocation.location)
-                    self.restaurantName = business.businessName
-                    self.restaurantLong = business.businessCoordinateLongitude
-                    self.restaurantLat = business.businessCoordinateLongitude
-                    
+                let restaurantPosition = customAnnotation()
+                restaurantPosition.setCoordinate( CLLocationCoordinate2DMake(business.businessCoordinateLatitude, business.businessCoordinateLongitude))
+                restaurantPosition.title = business.businessName
+                restaurantPosition.subtitle = business.businessAddress
+                
+                //                    coordinate: , title: business.businessName, subtitle:
+                self.mapView.viewForAnnotation(restaurantPosition)
+                self.mapView.addAnnotation(restaurantPosition)
+                var coordinateBusiness = CLLocation(latitude: business.businessCoordinateLatitude, longitude: business.businessCoordinateLongitude)
+                self.centerMapOnLocation(self.mapView.userLocation.location)
+                self.restaurantName = business.businessName
+                self.restaurantLong = business.businessCoordinateLongitude
+                self.restaurantLat = business.businessCoordinateLongitude
+                
+                
+            
                     // set the direction
-                    let myPlacemark = MKPlacemark(placemark: self.pm!)!
-                    self.myDestination = MKPlacemark(coordinate: CLLocationCoordinate2DMake(business.businessCoordinateLatitude, business.businessCoordinateLongitude), addressDictionary: nil)
-                    let destMKMap = MKMapItem(placemark: self.myDestination)!
-                    
-                    var directionRequest:MKDirectionsRequest = MKDirectionsRequest()
-                    
-                    directionRequest.setSource(MKMapItem.mapItemForCurrentLocation())
-                    
-                    directionRequest.setDestination(destMKMap)
-                    
-                    self.dir = MKDirections(request: directionRequest)
-                    
-                    self.dir.calculateDirectionsWithCompletionHandler() {
-                        (response:MKDirectionsResponse!, error:NSError!) in
-                        if response == nil {
-                            println(error)
-                            return
-                        }
-                        
-                        println("got directions")
-                        let route = response.routes[0] as! MKRoute
-                        
-                        self.poly = route.polyline
-                        
-                        self.mapView.addOverlay(self.poly)
-                        for step in route.steps {
-                            println("After \(step.distance) metres: \(step.instructions)")
-                        }
-                    }
+//                    let myPlacemark = MKPlacemark(placemark: self.pm!)!
+//                    self.myDestination = MKPlacemark(coordinate: CLLocationCoordinate2DMake(business.businessCoordinateLatitude, business.businessCoordinateLongitude), addressDictionary: nil)
+//                    let destMKMap = MKMapItem(placemark: self.myDestination)!
+//                    
+//                    var directionRequest:MKDirectionsRequest = MKDirectionsRequest()
+//                    
+//                    directionRequest.setSource(MKMapItem.mapItemForCurrentLocation())
+//                    
+//                    directionRequest.setDestination(destMKMap)
+//                    
+//                    self.dir = MKDirections(request: directionRequest)
+//                    
+//                    self.dir.calculateDirectionsWithCompletionHandler() {
+//                        (response:MKDirectionsResponse!, error:NSError!) in
+//                        if response == nil {
+//                            println(error)
+//                            return
+//                        }
+//                        
+//                        println("got directions")
+//                        let route = response.routes[0] as! MKRoute
+//                        
+//                        self.poly = route.polyline
+//                        
+//                        self.mapView.addOverlay(self.poly)
+//                        for step in route.steps {
+//                            println("After \(step.distance) metres: \(step.instructions)")
+//                        }
+//                    }
                
                 
                 i++

@@ -11,16 +11,18 @@ import MapKit
 import CoreLocation
 
 class customAnnotation: NSObject, MKAnnotation {
-    var coordinate: CLLocationCoordinate2D
-    var title: String?
-    var subtitle: String?
+    private var coord: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
     
-    init(coordinate: CLLocationCoordinate2D, title: String?, subtitle: String?)
-    {
-        self.coordinate = coordinate
-        self.title = title
-        self.subtitle = subtitle
+    var coordinate: CLLocationCoordinate2D {
+        get {
+            return coord
+        }
     }
     
-   
+    var title: String = ""
+    var subtitle: String = ""
+    
+    func setCoordinate(newCoordinate: CLLocationCoordinate2D) {
+        self.coord = newCoordinate
+    }
 }
