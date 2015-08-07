@@ -27,7 +27,9 @@
 		89BFBF961B71D172009DFD65 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89BFBF951B71D172009DFD65 /* CoreLocation.framework */; };
 		89DE63981B739AFB00AA3B65 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DE63971B739AFB00AA3B65 /* RootViewController.swift */; };
 		89DE639A1B739BA100AA3B65 /* DetailFoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DE63991B739BA100AA3B65 /* DetailFoodViewController.swift */; };
+		89DEDB261B74F71B0049310F /* MapFoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DEDB251B74F71B0049310F /* MapFoodViewController.swift */; };
 		89E014901B72767A0083C53D /* myCustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E0148F1B72767A0083C53D /* myCustomTableViewCell.swift */; };
+		89E08D9B1B74608000610225 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E08D9A1B74608000610225 /* InfoViewController.swift */; };
 		B77146932D36BD0086D629AA /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 668FA37947497C81E901E439 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -69,7 +71,9 @@
 		89BFBF951B71D172009DFD65 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		89DE63971B739AFB00AA3B65 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		89DE63991B739BA100AA3B65 /* DetailFoodViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailFoodViewController.swift; sourceTree = "<group>"; };
+		89DEDB251B74F71B0049310F /* MapFoodViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapFoodViewController.swift; sourceTree = "<group>"; };
 		89E0148F1B72767A0083C53D /* myCustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = myCustomTableViewCell.swift; sourceTree = "<group>"; };
+		89E08D9A1B74608000610225 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		DF7C6B679035688AC2CAA3E5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -175,6 +179,8 @@
 				89B288901B712821007B63B9 /* TimeViewController.swift */,
 				89DE63971B739AFB00AA3B65 /* RootViewController.swift */,
 				89DE63991B739BA100AA3B65 /* DetailFoodViewController.swift */,
+				89E08D9A1B74608000610225 /* InfoViewController.swift */,
+				89DEDB251B74F71B0049310F /* MapFoodViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -378,11 +384,13 @@
 				89BFBF8D1B71C1CE009DFD65 /* customAnnotation.swift in Sources */,
 				89E014901B72767A0083C53D /* myCustomTableViewCell.swift in Sources */,
 				89B2888F1B712813007B63B9 /* FoodViewController.swift in Sources */,
+				89DEDB261B74F71B0049310F /* MapFoodViewController.swift in Sources */,
 				89BFBF941B71C3C6009DFD65 /* jadwalApi.swift in Sources */,
 				89BFBF901B71C1CE009DFD65 /* Reachability.swift in Sources */,
 				89DE63981B739AFB00AA3B65 /* RootViewController.swift in Sources */,
 				89BFBF8E1B71C1CE009DFD65 /* customPointAnnotation.swift in Sources */,
 				89B288691B711B18007B63B9 /* AppDelegate.swift in Sources */,
+				89E08D9B1B74608000610225 /* InfoViewController.swift in Sources */,
 				89BFBF8F1B71C1CE009DFD65 /* NavigationCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

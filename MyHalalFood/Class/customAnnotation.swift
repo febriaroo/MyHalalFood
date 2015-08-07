@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import AddressBook
 
 class customAnnotation: NSObject, MKAnnotation {
     private var coord: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
@@ -50,6 +51,16 @@ class customAnnotation: NSObject, MKAnnotation {
             return NSURL(string: "http://www.jordans.com/~/media/Jordans%20Redesign/No-image-found.jpg")!
         }
         return businessImageUrl
+    }
+    
+    func mapItem() -> MKMapItem {
+        let addressDictionary = [String(kABPersonAddressStreetKey): subtitle]
+        let placemark = MKPlacemark(coordinate: coordinate, addressDictionary: addressDictionary)
+        
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = title
+        
+        return mapItem
     }
     
     var title: String = ""

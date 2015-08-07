@@ -16,6 +16,7 @@ class DetailFoodViewController: UIViewController, CLLocationManagerDelegate, MKM
         println("cancel")
     }
     
+    @IBOutlet weak var myView: UIView!
     @IBAction func getDirectionClicked(sender: AnyObject) {
         openMapForPlace(restaurantName, venueLat: restaurantLocation.latitude, venueLng: restaurantLocation.longitude)
     }
@@ -72,7 +73,7 @@ class DetailFoodViewController: UIViewController, CLLocationManagerDelegate, MKM
         let newString = stringku.stringByReplacingOccurrencesOfString("ms.jpg", withString: "348s.jpg", options: NSStringCompareOptions.LiteralSearch, range: nil)
             println(newString)
             
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background.png")!)
+        myView.backgroundColor = UIColor(patternImage: UIImage(named: "background.png")!)
             
             if Reachability.isConnectedToNetwork() == true {
                 println("Internet connection OK")

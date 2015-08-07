@@ -13,7 +13,7 @@ import MapKit // For Showing Maps
 import CoreLocation // For Get the user location
 import MapKit // For Showing Maps
 import Darwin // For random number
-
+import AddressBook
 
 
 class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
@@ -69,7 +69,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             
             self.locationManager.delegate = self
             self.mapView.delegate = self
-            
             //let heightku = bawah.frame.origin.y
             //businessView.frame = CGRectMake(bawah.frame.width/2, heightku, 128, 128)
             
@@ -128,9 +127,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
         self.getData("\(userLocation.location.coordinate.latitude)",location_long : "\(userLocation.location.coordinate.longitude)")
     }
-    func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
-        openMapForPlace(restaurantName, venueLat: restaurantLat, venueLng: restaurantLong)
-    }
+
     // MARK: GetRestaurantDataFromYelp
     
     func getData(location_lat: String!, location_long: String!) {
@@ -161,42 +158,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                 self.restaurantName = business.businessName
                 self.restaurantLong = business.businessCoordinateLongitude
                 self.restaurantLat = business.businessCoordinateLongitude
-                
-                
-            
-                    // set the direction
-//                    let myPlacemark = MKPlacemark(placemark: self.pm!)!
-//                    self.myDestination = MKPlacemark(coordinate: CLLocationCoordinate2DMake(business.businessCoordinateLatitude, business.businessCoordinateLongitude), addressDictionary: nil)
-//                    let destMKMap = MKMapItem(placemark: self.myDestination)!
-//                    
-//                    var directionRequest:MKDirectionsRequest = MKDirectionsRequest()
-//                    
-//                    directionRequest.setSource(MKMapItem.mapItemForCurrentLocation())
-//                    
-//                    directionRequest.setDestination(destMKMap)
-//                    
-//                    self.dir = MKDirections(request: directionRequest)
-//                    
-//                    self.dir.calculateDirectionsWithCompletionHandler() {
-//                        (response:MKDirectionsResponse!, error:NSError!) in
-//                        if response == nil {
-//                            println(error)
-//                            return
-//                        }
-//                        
-//                        println("got directions")
-//                        let route = response.routes[0] as! MKRoute
-//                        
-//                        self.poly = route.polyline
-//                        
-//                        self.mapView.addOverlay(self.poly)
-//                        for step in route.steps {
-//                            println("After \(step.distance) metres: \(step.instructions)")
-//                        }
-//                    }
-               
-                
-                i++
+
                 
             }
         }
@@ -214,6 +176,76 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             10000, 10000)
         mapView.setRegion(coordinateRegion, animated: true)
     }
+
+    func mapViewWillStartLoadingMap(mapView: MKMapView!) {
+        println("Loadingmap")
+    }
+    // annotation
+    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+        if annotation is customAnnotation {
+            let pinAnnotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "myPin")
+            
+            pinAnnotationView.pinColor = .Red
+            pinAnnotationView.draggable = true
+            pinAnnotationView.canShowCallout = true
+            pinAnnotationView.animatesDrop = true
+            
+            
+            let deleteButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+            deleteButton.frame.size.width = 44
+            deleteButton.frame.size.height = 44
+            deleteButton.backgroundColor = UIColor.clearColor()
+            deleteButton.setImage(UIImage(named: "go"), forState: .Normal)
+            
+            pinAnnotationView.leftCalloutAccessoryView = deleteButton
+            
+            return pinAnnotationView
+        }
+        
+        return nil
+    }
+    func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {
+        var tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "calloutTapped:")
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    func calloutTapped(gestureRecognizer: UIGestureRecognizer) {
+        println("kepencet")
+        
+        let location = self.mapView.selectedAnnotations[0] as! customAnnotation
+        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+        location.mapItem().openInMapsWithLaunchOptions(launchOptions)
+        
+        
+        if let annotation = self.mapView.selectedAnnotations[0] as? customAnnotation{
+            println("IT clicked!!")
+            
+            if let ann = self.mapView.selectedAnnotations[0] as? customAnnotation {
+                openMapForPlace(ann.title, venueLat: ann.coordinate.latitude,venueLng: ann.coordinate.longitude)
+            }
+        }
+        
+    }
+
+    
+    func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
+        //searchActive = false
+        println("kepencet")
+        
+        let location = view.annotation as! customAnnotation
+        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+        location.mapItem().openInMapsWithLaunchOptions(launchOptions)
+
+        
+        if let annotation = view.annotation as? customAnnotation {
+            var newProgramVar = myResto()
+            println("IT clicked!!")
+            
+            if let ann = self.mapView.selectedAnnotations[0] as? customAnnotation {
+                openMapForPlace(ann.title, venueLat: ann.coordinate.latitude,venueLng: ann.coordinate.longitude)
+            }
+        }
+    }
     
     
     func openMapForPlace(venueName:String!, venueLat: Double!, venueLng:Double! ) {
@@ -230,12 +262,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             MKLaunchOptionsMapSpanKey: NSValue(MKCoordinateSpan: regionSpan.span)
         ]
         var placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
-        var mapItem = MKMapItem(placemark: myDestination)
+        var mapItem = MKMapItem(placemark: placemark)
         mapItem.name = "\(venueName)"
         mapItem.openInMapsWithLaunchOptions(options)
         
         //self.businessView.image = UIImage(data:)
     }
-
+    // annotation callout info button opens this mapItem in Maps app
+    
 }
 

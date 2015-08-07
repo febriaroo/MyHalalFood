@@ -42,8 +42,6 @@ class FoodViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     // direction
     var directionku: [String]!
     
-    @IBOutlet weak var businessView: UIImageView!
-    @IBOutlet weak var ratingImage: UIImageView!
     // PM
     var pm: CLPlacemark!
     
@@ -92,9 +90,56 @@ class FoodViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         
     }
     
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var popularView: UIView!
+    @IBOutlet weak var historyView: UIView!
+    
+    @IBAction func indexChanged(sender: UISegmentedControl) {
+        switch segmentedControl.selectedSegmentIndex
+        {
+        case 0:
+            NSLog("Popular selected")
+            //show popular view
+            popularView.hidden = false
+            historyView.hidden = true
+        case 1:
+            NSLog("History selected")
+            //show history view
+            popularView.hidden = true
+            historyView.hidden = false
+        default:
+            break;
+        }
+    }
+
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {
+        var tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "calloutTapped:")
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    func calloutTapped(gestureRecognizer: UIGestureRecognizer) {
+        searchActive = false
+        if let annotation = self.mapView.selectedAnnotations[0] as? customAnnotation {
+            var newProgramVar = myResto()
+            println("IT clicked!!")
+            
+            if let ann = self.mapView.selectedAnnotations[0] as? customAnnotation {
+                println("\(ann.getID())")
+                println("\(ann.getbusinessUrl())")
+                println("\(ann.getbusinessUrlRating())")
+                println("\(ann.coordinate)")
+            }
+            
+            let vc = DetailFoodViewController(nibName: "DetailFoodViewController", bundle: nil)
+            self.performSegueWithIdentifier("detailFoodViewController", sender: self)
+        }
+        
     }
     //MARK: function to get the Update Location
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
