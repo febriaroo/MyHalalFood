@@ -14,7 +14,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-RESideMenu.xcscheme</key>
+		<key>Pods-SimpleTab-SimpleTab.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-SimpleTab.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -27,22 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>150551CEF312FAC886A5D0E1</key>
+		<key>139B607876E35F40E2CF89F8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2B05D60134BB4E2A08B22D70</key>
+		<key>5131EF2F5183A755EB72E1D5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4F660AE154DBDC623CB26FAB</key>
+		<key>7F6E7FD412A348C4F82B738F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AD38384DAE6268DB819BCD92</key>
+		<key>8B4DCEF1EFB8FCA52F3FBDD2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E0CD2596E9A45DB125B8B8DC</key>
 		<dict>
 			<key>primary</key>
 			<true/>

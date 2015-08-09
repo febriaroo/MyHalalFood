@@ -76,6 +76,8 @@ class customAnnotation: NSObject, MKAnnotation {
     var businessPhone : String!
     var businessAddress : String!
     
+    
+    
     func setCoordinate(newCoordinate: CLLocationCoordinate2D) {
         self.coord = newCoordinate
     }

@@ -1,0 +1,6 @@
+framework module SimpleTab {
+  umbrella header "Pods-SimpleTab-umbrella.h"
+
+  export *
+  module * { export * }
+}

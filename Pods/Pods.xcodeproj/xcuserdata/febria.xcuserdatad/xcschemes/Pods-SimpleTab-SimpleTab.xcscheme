@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2B05D60134BB4E2A08B22D70"
-               BuildableName = "RESideMenu.framework"
-               BlueprintName = "Pods-RESideMenu"
+               BlueprintIdentifier = "5131EF2F5183A755EB72E1D5"
+               BuildableName = "SimpleTab.bundle"
+               BlueprintName = "Pods-SimpleTab-SimpleTab"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

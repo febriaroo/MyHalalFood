@@ -3,5 +3,4 @@ use_frameworks!
 
 pod 'AFNetworking'
 pod 'BDBOAuth1Manager'
-pod 'RESideMenu', '~> 4.0.7' 
-pod 'RESideMenu'
+pod "SimpleTab"

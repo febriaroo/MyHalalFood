@@ -16,6 +16,9 @@ class DetailFoodViewController: UIViewController, CLLocationManagerDelegate, MKM
         println("cancel")
     }
     
+    @IBAction func callInfoDetailClicked(sender: AnyObject) {
+        println("Kepencet!!")
+    }
     @IBOutlet weak var myView: UIView!
     @IBAction func getDirectionClicked(sender: AnyObject) {
         openMapForPlace(restaurantName, venueLat: restaurantLocation.latitude, venueLng: restaurantLocation.longitude)

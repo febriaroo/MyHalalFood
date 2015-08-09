@@ -14,6 +14,7 @@ import CoreLocation // For Get the user location
 import MapKit // For Showing Maps
 import Darwin // For random number
 import AddressBook
+import SimpleTab
 
 
 class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
@@ -73,16 +74,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             //businessView.frame = CGRectMake(bawah.frame.width/2, heightku, 128, 128)
             
             
-            let navBackgroundImage:UIImage! = UIImage(named: "testing")
             
         } else {
             println("Internet connection FAILED")
             var alert = UIAlertView(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", delegate: nil, cancelButtonTitle: "OK")
             alert.show()
         }
-        let viewController = TimeViewController()
-        viewController.dataFromAPI = mapView.userLocation
-        self.navigationController?.presentViewController(viewController, animated: true, completion: nil)
+       
         
 
     }
@@ -177,9 +175,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         mapView.setRegion(coordinateRegion, animated: true)
     }
 
-    func mapViewWillStartLoadingMap(mapView: MKMapView!) {
-        println("Loadingmap")
-    }
+
     // annotation
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
         if annotation is customAnnotation {

@@ -3,12 +3,16 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "Info-50 (3).png"
+      "filename" : "yelp-2c-outline.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "Info-50 (3)@2x.png"
+      "filename" : "yelp-2c-outline@2x.png"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {

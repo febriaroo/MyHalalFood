@@ -25,6 +25,7 @@
 		89BFBF921B71C1CE009DFD65 /* YelpApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BFBF8C1B71C1CE009DFD65 /* YelpApi.swift */; };
 		89BFBF941B71C3C6009DFD65 /* jadwalApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BFBF931B71C3C6009DFD65 /* jadwalApi.swift */; };
 		89BFBF961B71D172009DFD65 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89BFBF951B71D172009DFD65 /* CoreLocation.framework */; };
+		89DC9D2D1B75544700C92B06 /* customFoodTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DC9D2C1B75544700C92B06 /* customFoodTableViewCell.swift */; };
 		89DE63981B739AFB00AA3B65 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DE63971B739AFB00AA3B65 /* RootViewController.swift */; };
 		89DE639A1B739BA100AA3B65 /* DetailFoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DE63991B739BA100AA3B65 /* DetailFoodViewController.swift */; };
 		89DEDB261B74F71B0049310F /* MapFoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DEDB251B74F71B0049310F /* MapFoodViewController.swift */; };
@@ -69,6 +70,7 @@
 		89BFBF8C1B71C1CE009DFD65 /* YelpApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YelpApi.swift; sourceTree = "<group>"; };
 		89BFBF931B71C3C6009DFD65 /* jadwalApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = jadwalApi.swift; sourceTree = "<group>"; };
 		89BFBF951B71D172009DFD65 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		89DC9D2C1B75544700C92B06 /* customFoodTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customFoodTableViewCell.swift; sourceTree = "<group>"; };
 		89DE63971B739AFB00AA3B65 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		89DE63991B739BA100AA3B65 /* DetailFoodViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailFoodViewController.swift; sourceTree = "<group>"; };
 		89DEDB251B74F71B0049310F /* MapFoodViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapFoodViewController.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				89E0148F1B72767A0083C53D /* myCustomTableViewCell.swift */,
+				89DC9D2C1B75544700C92B06 /* customFoodTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 				89BFBF901B71C1CE009DFD65 /* Reachability.swift in Sources */,
 				89DE63981B739AFB00AA3B65 /* RootViewController.swift in Sources */,
 				89BFBF8E1B71C1CE009DFD65 /* customPointAnnotation.swift in Sources */,
+				89DC9D2D1B75544700C92B06 /* customFoodTableViewCell.swift in Sources */,
 				89B288691B711B18007B63B9 /* AppDelegate.swift in Sources */,
 				89E08D9B1B74608000610225 /* InfoViewController.swift in Sources */,
 				89BFBF8F1B71C1CE009DFD65 /* NavigationCell.swift in Sources */,

@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import CoreLocation
+import SimpleTab
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
@@ -18,11 +19,72 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var seenError : Bool = false
     var locationFixAchieved : Bool = false
     var locationStatus : NSString = "Not Started"
+    var simpleTBC:SimpleTabBarController?
 
-
+    func setupSimpleTab() {
+        
+        //# Get Handle of Tab Bar Control
+        /* In storyboard, ensure :
+        - Tab Bar Controller is set as SimpleTabBarController
+        - Tab Bar is set as SimpleTabBar
+        - Tab Bar Item is set as SimpleTabBarItem
+        */
+        
+        simpleTBC = self.window!.rootViewController as? SimpleTabBarController
+        
+        //# Set the View Transition
+        simpleTBC!.viewTransition = PopViewTransition()
+        //simpleTBC?.viewTransition = CrossFadeViewTransition()
+        
+        //# Set Tab Bar Style ( tab bar , tab item animation style etc )
+        var style:SimpleTabBarStyle = PopTabBarStyle(tabBar: simpleTBC!.tabBar)
+        //var style:SimpleTabBarStyle = ElegantTabBarStyle(tabBar: simpleTBC!.tabBar)
+        
+        //# Optional - Set Tab Title attributes for selected and unselected (normal) states.
+        // Or use the App tint color to set the states
+        style.setTitleTextAttributes([NSFontAttributeName : UIFont.systemFontOfSize(14),  NSForegroundColorAttributeName: UIColor.lightGrayColor()], forState: .Normal)
+        style.setTitleTextAttributes([NSFontAttributeName : UIFont.systemFontOfSize(14),NSForegroundColorAttributeName: colorWithHexString("FDB835")], forState: .Selected)
+        
+        //# Optional - Set Tab Icon colors for selected and unselected (normal) states.
+        // Or use the App tint color to set the states
+        style.setIconColor(UIColor.lightGrayColor(), forState: UIControlState.Normal)
+        style.setIconColor(colorWithHexString("FDB835"), forState: UIControlState.Selected)
+        
+        //# Let the tab bar control know of the style
+        // Note: All style settings must be done prior to this.
+        simpleTBC?.tabBarStyle = style
+    }
+    
+    //# Handy function to return UIColors from Hex Strings
+    func colorWithHexString (hex:String) -> UIColor {
+        var cString:String = hex.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet() as NSCharacterSet).uppercaseString
+        
+        if (cString.hasPrefix("#")) {
+            cString = cString.substringFromIndex(advance(cString.startIndex, 1))
+        }
+        
+        if (count(cString) != 6) {
+            return UIColor.grayColor()
+        }
+        
+        var rgbValue:UInt32 = 0
+        NSScanner(string: cString).scanHexInt(&rgbValue)
+        
+        return UIColor(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+            alpha: CGFloat(1.0)
+        )
+    }
+    
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        setupSimpleTab()
         return true
+        
     }
 
     func applicationWillResignActive(application: UIApplication) {
