@@ -30,6 +30,8 @@ class DetailFoodViewController: UIViewController, CLLocationManagerDelegate, MKM
     var myresto: myResto!
     var imgURL:NSURL!
     var imgURLRating:NSURL!
+    
+    var restaurantURL:NSURL!
     var restaurantName: String!
     var restaurantAddress: String!
     var restaurantLocation: CLLocationCoordinate2D!
@@ -58,6 +60,11 @@ class DetailFoodViewController: UIViewController, CLLocationManagerDelegate, MKM
     @IBOutlet weak var backButton: UIButton!
     
     @IBOutlet weak var businessImage: UIImageView!
+    
+    @IBAction func yelpButtonClicked(sender: AnyObject) {
+        UIApplication.sharedApplication().openURL(self.restaurantURL!)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if restaurantName != nil {

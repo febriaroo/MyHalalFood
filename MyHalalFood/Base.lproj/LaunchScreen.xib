@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6214" systemVersion="14A314h" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6207"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -12,30 +12,67 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Copyright (c) 2015 Febria Roosita Dwi. All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="8ie-xW-0ye">
-                    <rect key="frame" x="20" y="439" width="441" height="21"/>
+                    <rect key="frame" x="20" y="439" width="441" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.99215686270000003" green="0.67450980390000004" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MyHalalFood" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="kId-c2-rCX">
-                    <rect key="frame" x="20" y="140" width="441" height="43"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Muslim Little Helper" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="kId-c2-rCX">
+                    <rect key="frame" x="20" y="198" width="441" height="43"/>
+                    <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="36"/>
+                    <color key="textColor" red="0.99215686270000003" green="0.67450980390000004" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="Clock-512" translatesAutoresizingMaskIntoConstraints="NO" id="3VI-62-Zmr">
+                    <rect key="frame" x="207" y="247" width="66" height="66"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="66" id="T8N-Qh-7ya"/>
+                        <constraint firstAttribute="width" constant="66" id="pPs-9o-Gnp"/>
+                    </constraints>
+                </imageView>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="Restaurant Filled-512" translatesAutoresizingMaskIntoConstraints="NO" id="11U-Lt-ovK">
+                    <rect key="frame" x="281" y="245" width="66" height="66"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="66" id="EgD-de-su4"/>
+                        <constraint firstAttribute="width" constant="66" id="vDo-cI-enE"/>
+                    </constraints>
+                </imageView>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="Mosque-512" translatesAutoresizingMaskIntoConstraints="NO" id="XMC-7e-fV7">
+                    <rect key="frame" x="133" y="241" width="66" height="66"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="66" id="0ae-pJ-31E"/>
+                        <constraint firstAttribute="width" constant="66" id="djw-pP-d53"/>
+                    </constraints>
+                </imageView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.12941176469999999" green="0.1843137255" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="kId-c2-rCX" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="bottom" multiplier="1/3" constant="1" id="5cJ-9S-tgC"/>
+                <constraint firstItem="kId-c2-rCX" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="bottom" multiplier="1/3" constant="59.5" id="5cJ-9S-tgC"/>
+                <constraint firstItem="XMC-7e-fV7" firstAttribute="top" secondItem="kId-c2-rCX" secondAttribute="bottom" id="9dv-Ts-BsW"/>
+                <constraint firstItem="3VI-62-Zmr" firstAttribute="leading" secondItem="XMC-7e-fV7" secondAttribute="trailing" constant="8" id="Bjo-2L-GUY"/>
+                <constraint firstAttribute="centerY" secondItem="3VI-62-Zmr" secondAttribute="centerY" priority="999" id="D3J-Li-2bx"/>
                 <constraint firstAttribute="centerX" secondItem="kId-c2-rCX" secondAttribute="centerX" id="Koa-jz-hwk"/>
                 <constraint firstAttribute="bottom" secondItem="8ie-xW-0ye" secondAttribute="bottom" constant="20" id="Kzo-t9-V3l"/>
                 <constraint firstItem="8ie-xW-0ye" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="MfP-vx-nX0"/>
+                <constraint firstItem="11U-Lt-ovK" firstAttribute="top" secondItem="kId-c2-rCX" secondAttribute="bottom" constant="4" id="S7s-ur-xln"/>
+                <constraint firstAttribute="centerX" secondItem="3VI-62-Zmr" secondAttribute="centerX" id="Vdy-Mo-XZZ"/>
+                <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="11U-Lt-ovK" secondAttribute="trailing" priority="999" constant="131" id="WLy-Ym-1kJ"/>
                 <constraint firstAttribute="centerX" secondItem="8ie-xW-0ye" secondAttribute="centerX" id="ZEH-qu-HZ9"/>
+                <constraint firstItem="3VI-62-Zmr" firstAttribute="top" secondItem="kId-c2-rCX" secondAttribute="bottom" constant="6" id="Zjl-rW-vA6"/>
+                <constraint firstItem="XMC-7e-fV7" firstAttribute="leading" relation="lessThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="leading" priority="999" constant="130" id="all-UR-XAX"/>
                 <constraint firstItem="kId-c2-rCX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="fvb-Df-36g"/>
+                <constraint firstItem="kId-c2-rCX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="198" id="kyX-5D-JXg"/>
+                <constraint firstAttribute="centerX" secondItem="kId-c2-rCX" secondAttribute="centerX" id="nS4-mN-WiY"/>
+                <constraint firstItem="11U-Lt-ovK" firstAttribute="leading" secondItem="3VI-62-Zmr" secondAttribute="trailing" constant="8" id="qcQ-6E-DU9"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="548" y="455"/>
         </view>
     </objects>
+    <resources>
+        <image name="Clock-512" width="512" height="512"/>
+        <image name="Mosque-512" width="512" height="512"/>
+        <image name="Restaurant Filled-512" width="512" height="512"/>
+    </resources>
 </document>

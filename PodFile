@@ -1,6 +1,7 @@
 platform :ios, '8.0'
 use_frameworks!
-
+pod 'GoogleAnalytics'
 pod 'AFNetworking'
 pod 'BDBOAuth1Manager'
 pod "SimpleTab"
+

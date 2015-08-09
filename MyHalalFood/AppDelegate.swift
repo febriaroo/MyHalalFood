@@ -11,6 +11,7 @@ import CoreData
 import CoreLocation
 import SimpleTab
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
 

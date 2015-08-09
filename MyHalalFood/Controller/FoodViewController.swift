@@ -12,17 +12,13 @@ import MapKit // For Showing Maps
 import CoreLocation // For Get the user location
 import MapKit // For Showing Maps
 import Darwin // For random number
-import RESideMenu
 
-class FoodViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate  {
+
+class FoodViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISearchBarDelegate {
     
     //direction
     var dir : MKDirections!
     var poly : MKPolyline!
-    
-    // tabel view
-    
-    @IBOutlet weak var myTable: UITableView!
    
     
     //search variable
@@ -66,7 +62,6 @@ class FoodViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        list.hidden = true
         
         searchBar.delegate = self
         if Reachability.isConnectedToNetwork() == true {
@@ -95,32 +90,6 @@ class FoodViewController: UIViewController, CLLocationManagerDelegate, MKMapView
        
     }
     
-    @IBOutlet weak var segmentedControl: UISegmentedControl!
-    @IBOutlet weak var mapmap: MKMapView!
-    @IBOutlet weak var list: UITableView!
-    
-    @IBAction func indexChanged(sender: UISegmentedControl) {
-        switch segmentedControl.selectedSegmentIndex
-        {
-        case 0:
-            NSLog("Popular selected")
-            //show popular view
-            mapmap.hidden = false
-            list.hidden = true
-            mapOn = true
-            listOn = false
-        case 1:
-            NSLog("History selected")
-            //show history view
-            mapmap.hidden = true
-            list.hidden = false
-            mapOn = false
-            listOn = true
-            myTable.reloadData()
-        default:
-            break;
-        }
-    }
 
     
     override func didReceiveMemoryWarning() {
@@ -156,6 +125,8 @@ class FoodViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         CLGeocoder().reverseGeocodeLocation(manager.location, completionHandler: { (placemarks, error) -> Void in
             if error != nil {
                 println("ERROR nih! \(error.localizedDescription)")
+                var alert = UIAlertView(title: "No Access to GPS", message: "Make sure your device is connected to the GPS.", delegate: nil, cancelButtonTitle: "OK")
+                alert.show()
                 return
             }
             
@@ -213,6 +184,7 @@ class FoodViewController: UIViewController, CLLocationManagerDelegate, MKMapView
                 restaurantPosition.setID(business.businessId)
                 restaurantPosition.setbusinessUrl(business.businessUrl)
                 restaurantPosition.setbusinessUrlRating(business.businessImageUrl)
+                restaurantPosition.setbusinessUrlLoad(business.businessUrlYelp)
                 restaurantPosition.title = business.businessName
                 restaurantPosition.subtitle = business.businessAddress
                     
@@ -236,6 +208,8 @@ class FoodViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     // Function to show the error if it failed.
     func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
         println("Error nih :( " + error.localizedDescription)
+        var alert = UIAlertView(title: "No Access to GPS", message: "Make sure your device is connected to the GPS.", delegate: nil, cancelButtonTitle: "OK")
+        alert.show()
     }
     
     // Function for center the location (Radius)
@@ -399,49 +373,50 @@ class FoodViewController: UIViewController, CLLocationManagerDelegate, MKMapView
             destinationVC.restaurantName = ann.title
             destinationVC.restaurantAddress = ann.subtitle
             destinationVC.restaurantLocation = ann.coordinate
+            destinationVC.restaurantURL = ann.getbusinessUrlLoad()
         }
     }
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("resto", forIndexPath: indexPath) as! customFoodTableViewCell
-        
-        let annotationsToRemove = self.mapView.annotations.filter { $0 !== self.mapView.userLocation }
-        mapView.removeAnnotations( annotationsToRemove )
-        let loc = "\(self.mapmap.userLocation.coordinate.latitude),\(self.mapmap.userLocation.coordinate.longitude)"
-        Restaurant.getRealDataFromYelp("Restaurant", sort: .Distance, location: loc, category: ["halal"]) { (Restaurant: [Restaurant]!, error: NSError!) -> Void in
-            self.businesses = Restaurant
-            
-            var businessCount: Int = Restaurant.count
-            var i:Int = 0
-            
-            for myresto in Restaurant {
-                
-                cell.foodAddressLabel.text = myresto.businessAddress
-                cell.foodNameLabel.text = myresto.businessName
-                
-                
-            }
-        }
-        println()
-        return cell
-    }
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        println("seribu")
-        return 8
-    }
-    func getFotoFromYelp(myURL: NSURL!, mycell: UIImageView?)
-    {
-        let request: NSURLRequest = NSURLRequest(URL: myURL)
-        NSURLConnection.sendAsynchronousRequest(
-            request, queue: NSOperationQueue.mainQueue(),
-            completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
-                if error == nil {
-                   // mycell.image = UIImage(data: data,scale: 1)
-                   
-                    
-                }
-        })
-
-    }
+//    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCellWithIdentifier("resto", forIndexPath: indexPath) as! customFoodTableViewCell
+//        
+//        let annotationsToRemove = self.mapView.annotations.filter { $0 !== self.mapView.userLocation }
+//        mapView.removeAnnotations( annotationsToRemove )
+//        let loc = "\(self.mapmap.userLocation.coordinate.latitude),\(self.mapmap.userLocation.coordinate.longitude)"
+//        Restaurant.getRealDataFromYelp("Restaurant", sort: .Distance, location: loc, category: ["halal"]) { (Restaurant: [Restaurant]!, error: NSError!) -> Void in
+//            self.businesses = Restaurant
+//            
+//            var businessCount: Int = Restaurant.count
+//            var i:Int = 0
+//            
+//            for myresto in Restaurant {
+//                
+//                cell.foodAddressLabel.text = myresto.businessAddress
+//                cell.foodNameLabel.text = myresto.businessName
+//                
+//                
+//            }
+//        }
+//        println()
+//        return cell
+//    }
+//    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        println("seribu")
+//        return 8
+//    }
+//    func getFotoFromYelp(myURL: NSURL!, mycell: UIImageView?)
+//    {
+//        let request: NSURLRequest = NSURLRequest(URL: myURL)
+//        NSURLConnection.sendAsynchronousRequest(
+//            request, queue: NSOperationQueue.mainQueue(),
+//            completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
+//                if error == nil {
+//                   // mycell.image = UIImage(data: data,scale: 1)
+//                   
+//                    
+//                }
+//        })
+//
+//    }
     
 }
 class myResto: NSObject{

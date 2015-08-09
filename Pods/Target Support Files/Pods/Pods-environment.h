@@ -54,6 +54,12 @@
 #define COCOAPODS_VERSION_MINOR_BDBOAuth1Manager 5
 #define COCOAPODS_VERSION_PATCH_BDBOAuth1Manager 0
 
+// GoogleAnalytics
+#define COCOAPODS_POD_AVAILABLE_GoogleAnalytics
+#define COCOAPODS_VERSION_MAJOR_GoogleAnalytics 3
+#define COCOAPODS_VERSION_MINOR_GoogleAnalytics 13
+#define COCOAPODS_VERSION_PATCH_GoogleAnalytics 0
+
 // SimpleTab
 #define COCOAPODS_POD_AVAILABLE_SimpleTab
 #define COCOAPODS_VERSION_MAJOR_SimpleTab 0

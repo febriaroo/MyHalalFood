@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5131EF2F5183A755EB72E1D5"
+               BlueprintIdentifier = "FE4700632F671A1FD7C69B5C"
                BuildableName = "SimpleTab.bundle"
                BlueprintName = "Pods-SimpleTab-SimpleTab"
                ReferencedContainer = "container:Pods.xcodeproj">

@@ -14,7 +14,6 @@ import CoreLocation // For Get the user location
 import MapKit // For Showing Maps
 import Darwin // For random number
 import AddressBook
-import SimpleTab
 
 
 class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
@@ -94,6 +93,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         CLGeocoder().reverseGeocodeLocation(manager.location, completionHandler: { (placemarks, error) -> Void in
             if error != nil {
                 println("ERROR nih! \(error.localizedDescription)")
+                
+                var alert = UIAlertView(title: "No Access to GPS", message: "Make sure your device is connected to the GPS.", delegate: nil, cancelButtonTitle: "OK")
+                alert.show()
                 return
             }
             
@@ -166,6 +168,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     // Function to show the error if it failed.
     func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
         println("Error nih :( " + error.localizedDescription)
+        var alert = UIAlertView(title: "No Access to GPS", message: "Make sure your device is connected to the GPS.", delegate: nil, cancelButtonTitle: "OK")
+        alert.show()
     }
     
     // Function for center the location (Radius)

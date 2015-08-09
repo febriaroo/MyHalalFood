@@ -52,6 +52,18 @@ class customAnnotation: NSObject, MKAnnotation {
         }
         return businessImageUrl
     }
+    func setbusinessUrlLoad(_id: NSURL!)
+    {
+        self.businessUrlLoad=_id
+    }
+    func getbusinessUrlLoad() -> NSURL
+    {
+        if(businessUrlLoad == nil)
+        {
+            return NSURL(string: "http://www.yelp.com")!
+        }
+        return businessUrlLoad
+    }
     
     func mapItem() -> MKMapItem {
         let addressDictionary = [String(kABPersonAddressStreetKey): subtitle]
@@ -75,7 +87,7 @@ class customAnnotation: NSObject, MKAnnotation {
     var businessImageUrl : NSURL!
     var businessPhone : String!
     var businessAddress : String!
-    
+    var businessUrlLoad : NSURL!
     
     
     func setCoordinate(newCoordinate: CLLocationCoordinate2D) {

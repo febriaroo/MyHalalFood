@@ -23,16 +23,19 @@ PODS:
   - BDBOAuth1Manager (1.5.0):
     - AFNetworking/NSURLConnection (~> 2.5.0)
     - AFNetworking/NSURLSession (~> 2.5.0)
+  - GoogleAnalytics (3.13.0)
   - SimpleTab (0.1.1)
 
 DEPENDENCIES:
   - AFNetworking
   - BDBOAuth1Manager
+  - GoogleAnalytics
   - SimpleTab
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
   BDBOAuth1Manager: 2e28773b58f880fb36b5cd3efcf0b1fefbc78a99
+  GoogleAnalytics: fcf1f1cad57ae1a9a53520018f0f680ceeeb8b49
   SimpleTab: 4e490e339a19d0d1d26c0fa3c862188eaad73ecb
 
 COCOAPODS: 0.37.2

@@ -10,10 +10,7 @@ import UIKit
 
 class InfoViewController: UIViewController {
 
-    @IBAction func backButtonClicked(sender: AnyObject) {
-       //back button please
-        self.dismissViewControllerAnimated(true, completion: {});
-    }
+
     @IBAction func makeschoolButtonClicked(sender: AnyObject) {
         UIApplication.sharedApplication().openURL(NSURL(string: "http://www.makeschool.com")!)
     }
