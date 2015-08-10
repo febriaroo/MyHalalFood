@@ -73,17 +73,17 @@ class DetailFoodViewController: UIViewController, CLLocationManagerDelegate, MKM
         var stringku = "\(imgURLRating)"
             
         //rounded image
-            self.businessImage.layer.borderWidth = 1
-            self.businessImage.layer.masksToBounds = false
-            self.businessImage.layer.borderColor = UIColor.clearColor().CGColor
-            self.businessImage.layer.cornerRadius = self.businessImage.frame.height/2
-            self.businessImage.clipsToBounds = true
+//            self.businessImage.layer.borderWidth = 1
+//            self.businessImage.layer.masksToBounds = false
+//            self.businessImage.layer.borderColor = UIColor.clearColor().CGColor
+//            self.businessImage.layer.cornerRadius = self.businessImage.frame.height/2
+//            self.businessImage.clipsToBounds = true
             
         let aString: String = "This is my string"
         let newString = stringku.stringByReplacingOccurrencesOfString("ms.jpg", withString: "348s.jpg", options: NSStringCompareOptions.LiteralSearch, range: nil)
             println(newString)
             
-        myView.backgroundColor = UIColor(patternImage: UIImage(named: "background.png")!)
+       // myView.backgroundColor = UIColor(patternImage: UIImage(named: "background.png")!)
             
             if Reachability.isConnectedToNetwork() == true {
                 println("Internet connection OK")

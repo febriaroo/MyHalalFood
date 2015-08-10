@@ -43,8 +43,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         //# Optional - Set Tab Title attributes for selected and unselected (normal) states.
         // Or use the App tint color to set the states
-        style.setTitleTextAttributes([NSFontAttributeName : UIFont.systemFontOfSize(14),  NSForegroundColorAttributeName: UIColor.lightGrayColor()], forState: .Normal)
-        style.setTitleTextAttributes([NSFontAttributeName : UIFont.systemFontOfSize(14),NSForegroundColorAttributeName: colorWithHexString("FDB835")], forState: .Selected)
+        style.setTitleTextAttributes([NSFontAttributeName : UIFont.systemFontOfSize(12),  NSForegroundColorAttributeName: UIColor.lightGrayColor()], forState: .Normal)
+        style.setTitleTextAttributes([NSFontAttributeName : UIFont.systemFontOfSize(12),NSForegroundColorAttributeName: colorWithHexString("FDB835")], forState: .Selected)
         
         //# Optional - Set Tab Icon colors for selected and unselected (normal) states.
         // Or use the App tint color to set the states
