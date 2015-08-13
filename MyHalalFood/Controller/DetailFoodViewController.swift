@@ -8,9 +8,11 @@
 
 import UIKit
 import MapKit
+import iAd
 
-class DetailFoodViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate  {
+class DetailFoodViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate,ADBannerViewDelegate   {
     
+    @IBOutlet weak var foodAdBannerView: ADBannerView!
     @IBAction func backButtonClicked(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
         println("cancel")
@@ -23,6 +25,24 @@ class DetailFoodViewController: UIViewController, CLLocationManagerDelegate, MKM
     @IBAction func getDirectionClicked(sender: AnyObject) {
         openMapForPlace(restaurantName, venueLat: restaurantLocation.latitude, venueLng: restaurantLocation.longitude)
     }
+    
+    //ads
+    func bannerViewWillLoadAd(banner: ADBannerView!) {
+        
+    }
+    func bannerViewDidLoadAd(banner: ADBannerView!) {
+        self.foodAdBannerView?.hidden = false
+    }
+    func bannerViewActionDidFinish(banner: ADBannerView!) {
+        
+    }
+    func bannerViewActionShouldBegin(banner: ADBannerView!, willLeaveApplication willLeave: Bool) -> Bool {
+        return true
+    }
+    func bannerView(banner: ADBannerView!, didFailToReceiveAdWithError error: NSError!) {
+        
+    }
+    
     
     @IBOutlet weak var restaurantImage: UIImageView!
     
@@ -67,11 +87,15 @@ class DetailFoodViewController: UIViewController, CLLocationManagerDelegate, MKM
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //self.view.backgroundColor = UIColor(patternImage: UIImage(named: "blueblack.png")!)
         if restaurantName != nil {
         nameLabel.text = restaurantName
         addressLabel.text = restaurantAddress
         var stringku = "\(imgURLRating)"
-            
+          
+//            self.canDisplayBannerAds = true
+//            self.foodAdBannerView.delegate = self
+//            self.foodAdBannerView.hidden = true
         //rounded image
 //            self.businessImage.layer.borderWidth = 1
 //            self.businessImage.layer.masksToBounds = false

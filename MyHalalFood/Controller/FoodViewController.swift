@@ -12,9 +12,9 @@ import MapKit // For Showing Maps
 import CoreLocation // For Get the user location
 import MapKit // For Showing Maps
 import Darwin // For random number
+import iAd
 
-
-class FoodViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISearchBarDelegate {
+class FoodViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISearchBarDelegate, ADBannerViewDelegate  {
     
     //direction
     var dir : MKDirections!
@@ -62,6 +62,10 @@ class FoodViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //self.canDisplayBannerAds = true
+        //self.foodkuAdBannerView.delegate = self
+        //self.foodkuAdBannerView.hidden = true
         
         searchBar.delegate = self
         if Reachability.isConnectedToNetwork() == true {
@@ -138,6 +142,26 @@ class FoodViewController: UIViewController, CLLocationManagerDelegate, MKMapView
                 println("Error with data")
             }
         })
+    }
+    
+    //ads
+    @IBOutlet weak var foodkuAdBannerView: ADBannerView!
+    
+    
+    func bannerViewWillLoadAd(banner: ADBannerView!) {
+        
+    }
+    func bannerViewDidLoadAd(banner: ADBannerView!) {
+        self.foodkuAdBannerView?.hidden = false
+    }
+    func bannerViewActionDidFinish(banner: ADBannerView!) {
+        
+    }
+    func bannerViewActionShouldBegin(banner: ADBannerView!, willLeaveApplication willLeave: Bool) -> Bool {
+        return true
+    }
+    func bannerView(banner: ADBannerView!, didFailToReceiveAdWithError error: NSError!) {
+        
     }
     
     //MARK: Function to show the location data
@@ -429,7 +453,7 @@ class myResto: NSObject{
     var businessImageUrl : NSURL!
     var businessPhone : String!
     var businessAddress : String!
-}
+} // arrow change when moving
     
 
 
