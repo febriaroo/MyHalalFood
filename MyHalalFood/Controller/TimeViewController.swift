@@ -18,7 +18,9 @@ import CoreMotion // for track user interaction
 class TimeViewController:  UIViewController, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate  {
     var dataFromAPI : MKUserLocation!
     let locationManager = CLLocationManager()
+    var currentHeading = CLHeading()
     
+    var derajat : CGFloat! = 0.0
     //JSON DATA
     var jsonResult: NSDictionary!
     var timeArray: [String] = []
@@ -42,7 +44,7 @@ class TimeViewController:  UIViewController, CLLocationManagerDelegate, UITableV
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.startUpdatingLocation()
-       
+        self.locationManager.startUpdatingHeading()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "wallpaper.png")!)
         
         self.timer = NSTimer.scheduledTimerWithTimeInterval(1.0,
@@ -72,15 +74,28 @@ class TimeViewController:  UIViewController, CLLocationManagerDelegate, UITableV
     }
     func outputRotationData(rotationRate: CMRotationRate!)
     {
-        UIView.animateWithDuration(1.0, animations: {
-             self.arahKiblatImageView.transform = CGAffineTransformMakeRotation(CGFloat(rotationRate.y))
-            
-        })
+//        UIView.animateWithDuration(1.0, animations: {
+//             self.arahKiblatImageView.transform = CGAffineTransformMakeRotation(CGFloat(-rotationRate.z))
+//            
+//        })
         
     }
     func outputAccelerometerData(accelerometerData: CMAcceleration)
     {
     
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+        let h = newHeading.magneticHeading
+        let k = newHeading.trueHeading
+        var newRad =  CGFloat((-newHeading.trueHeading * M_PI / 180.0)) + self.derajat;
+        UIView.animateWithDuration(1.0, animations: {
+            self.arahKiblatImageView.transform = CGAffineTransformMakeRotation(CGFloat(newRad))
+            
+        })
+        //print(h)
+        //print(k)
+        //label.text = "\(h)"
     }
     func tick(){
         let date = NSDate()
@@ -112,6 +127,8 @@ class TimeViewController:  UIViewController, CLLocationManagerDelegate, UITableV
                     //println("qibla_direction")
                     //println(self.jsonResult["qibla_direction"])
                     var qibla_direction: CGFloat = CGFloat(self.jsonResult["qibla_direction"]!.floatValue)
+                    
+                    self.derajat = qibla_direction
                     UIView.animateWithDuration(1.0, animations: {
                         self.arahKiblatImageView.transform = CGAffineTransformMakeRotation(qibla_direction)
                     })
